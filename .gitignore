@@ -12,8 +12,6 @@ pids
 
 /build
 
-/bin
-
 *.vim
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
