@@ -6,6 +6,7 @@ const minimist = require('minimist');
 const clear = require('clear');
 const figlet = require('figlet');
 const chalk = require('chalk');
+const FileToString = require('../src/FileToString');
 
 module.exports = (args = minimist(process.argv.slice(2))) => {
   const start = new Date().getTime();
@@ -60,11 +61,36 @@ module.exports = (args = minimist(process.argv.slice(2))) => {
   }
 
   /**
+   * asynchronously get contents of both user and tweet files
+   *
+   */
+  const getFileContents = (userFilePath, tweetFilePath) => {
+    return Promise.all([
+        new FileToString(userFilePath).getContents().then(log('read in user file.')), 
+        new FileToString(tweetFilePath).getContents().then(log('read in tweet file.'))
+    ]);
+  }
+
+  /**
    * initial point of execution
    *
    */
   try {
     const {user, tweet} = validate(args);
+    getFileContents(user, tweet)
+      .then(responses => {
+        log('raw data for both users and tweets have been retrieved'); 
+        return responses;
+      })
+      .then(responses => {
+        // TODO: amalgamate strings
+      })
+      .then(() => {
+        const end = new Date().getTime();
+        const duration = end - start;
+        log('done in ' + duration + ' milliseconds!');
+      })
+      .catch(error => handleError(error));
   }
   catch(error) {
     handleError(error);
@@ -72,6 +98,6 @@ module.exports = (args = minimist(process.argv.slice(2))) => {
   finally {
     const end = new Date().getTime();
     const duration = end - start;
-    log('done in ' + duration);
+    log('done in ' + duration + ' milliseconds');
   }
 }
