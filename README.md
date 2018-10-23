@@ -1,8 +1,9 @@
 # twitter-parser
 
-![dynamic screenshot](https://raw.githubusercontent.com/dudleycraig/twitter-parser/master/twitter-parser.gif)
-
 developed in node (v8.10.0), using npm (3.5.2) on vbox running ubuntu
+
+![dynamic screenshot](https://raw.githubusercontent.com/dudleycraig/twitter-parser/master/assets/twitter-parser.gif)
+
 
 
 ## installation
