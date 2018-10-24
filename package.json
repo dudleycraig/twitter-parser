@@ -21,7 +21,7 @@
     "lint": "node_modules/.bin/eslint -c .eslintrc.json"
   },
   "bin": {
-    "cast": "./bin/twitter-parser"
+    "twitter-parser": "./bin/twitter-parser"
   },
   "main": "./src/index.js",
   "jest": {
